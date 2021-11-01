@@ -11,7 +11,7 @@ export default class Canvas extends Home {
   }
 
   addGui() {
-    this.gui.add(this.camera.position, 'z').min(5)
+    this.gui.add(this.camera.position, 'z').min(2)
   }
 
   addLight() {
@@ -32,12 +32,11 @@ export default class Canvas extends Home {
   mounted() {
     this.setRenderer()
     this.createSun()
-    this.createEarth()
-    this.createMoon()
+    this.createPlanets()
     this.addLight()
     this.addSpaceBackground()
     this.addGui()
-    this.camera.position.z = 3
+    this.camera.position.z = 5
     this.animate()
   }
 }
