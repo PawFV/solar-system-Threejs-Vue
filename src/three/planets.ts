@@ -50,51 +50,51 @@ export const planets: Planets = {
     size: 0.07,
     texture: textures.mars,
     position: {
-      x: 4,
+      x: 5,
       y: 0.5,
       z: 5
     },
     speed: 0.7,
-    distance: 4
+    distance: 5
   },
   jupiter: {
     size: 0.7,
     texture: textures.jupiter,
     position: {
-      x: 5,
+      x: 8,
       y: 0.5,
-      z: 7
+      z: 8
     },
     speed: 0.3,
-    distance: 5
+    distance: 8
   },
   saturn: {
     size: 0.6,
     texture: textures.saturn,
-    position: { x: 6, y: 0.5, z: 8 },
+    position: { x: 12, y: 0.5, z: 12 },
     speed: 0.23,
-    distance: 6
+    distance: 12
   },
   uranus: {
     size: 0.25,
     texture: textures.uranus,
     position: {
-      x: 7,
+      x: 16,
       y: 0.5,
-      z: 9
+      z: 16
     },
     speed: 0.18,
-    distance: 7
+    distance: 16
   },
   neptune: {
     size: 0.24,
     texture: textures.neptune,
     position: {
-      x: 8,
+      x: 20,
       y: 0.5,
-      z: 10
+      z: 20
     },
     speed: 0.14,
-    distance: 8
+    distance: 18
   }
 }

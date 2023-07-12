@@ -2,6 +2,10 @@
 
 **Important:** Use node v16 for compatibility reasons.
 
+## Preview
+
+![](./docs/chrome_3BRzrnM8n6.gif)
+
 ## Project setup
 
 ```

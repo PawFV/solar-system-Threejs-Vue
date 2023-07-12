@@ -26,8 +26,7 @@ export default class Root extends Vue {
 
   createSun() {
     const geometry = new THREE.SphereGeometry(0.6)
-    const material = new THREE.MeshLambertMaterial({})
-    material.map = textures.sun
+    const material = new THREE.MeshLambertMaterial({map: textures.sun})
     this.sun = new THREE.Mesh(geometry, material)
     this.solarSystem.add(this.sun)
   }
@@ -36,14 +35,14 @@ export default class Root extends Vue {
     each(planets, (planet, key) => {
       const planetOrbit = new THREE.Object3D()
       planetOrbit.position.x = planet.position.x
-      planetOrbit.position.y = planet.position.z
+      planetOrbit.position.z = planet.position.z
 
-      this.solarSystem.add(planetOrbit) // parent the orbit directly to the solar system
+      this.solarSystem.add(planetOrbit)
 
       const geometry = new THREE.SphereBufferGeometry(planet.size)
       const material = new THREE.MeshLambertMaterial({ map: planet.texture })
       const planetMesh = new THREE.Mesh(geometry, material)
-      planetOrbit.add(planetMesh) // add the planet to its orbit
+      planetOrbit.add(planetMesh)
 
       if (planet.moon) {
         const moonOrbit = new THREE.Object3D()
