@@ -1,5 +1,7 @@
 ## Nested Table test
 
+**Important:** Use node v16 for compatibility reasons.
+
 ## Project setup
 
 ```

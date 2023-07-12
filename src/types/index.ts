@@ -7,12 +7,16 @@ interface Planet {
   texture: Texture
   position: OrbPosition
   moon?: Moon
+  speed: number
+  distance: number
 }
 
 export interface Moon {
   size: number
   texture: Texture
   position: OrbPosition
+  speed: number
+  distance: number
 }
 
 export interface OrbPosition {

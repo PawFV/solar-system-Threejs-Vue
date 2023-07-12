@@ -36,14 +36,14 @@ export default class Root extends Vue {
     each(planets, (planet, key) => {
       const planetOrbit = new THREE.Object3D()
       planetOrbit.position.x = planet.position.x
-      planetOrbit.position.z = planet.position.z
+      planetOrbit.position.y = planet.position.z
 
-      this.solarSystem.add(planetOrbit)
+      this.solarSystem.add(planetOrbit) // parent the orbit directly to the solar system
 
       const geometry = new THREE.SphereBufferGeometry(planet.size)
       const material = new THREE.MeshLambertMaterial({ map: planet.texture })
       const planetMesh = new THREE.Mesh(geometry, material)
-      planetOrbit.add(planetMesh)
+      planetOrbit.add(planetMesh) // add the planet to its orbit
 
       if (planet.moon) {
         const moonOrbit = new THREE.Object3D()
@@ -53,8 +53,8 @@ export default class Root extends Vue {
         const moonMesh = this.createMoon(planet.moon)
         moonOrbit.add(moonMesh)
       }
-      console.log(key)
-      this.planetOrbits[key] = planetOrbit
+
+      Vue.set(this.planetOrbits, key, planetOrbit)
     })
   }
 
@@ -66,11 +66,23 @@ export default class Root extends Vue {
 
   animate() {
     requestAnimationFrame(this.animate)
-    this.solarSystem.rotation.y += 0.01
-    this.sun.rotation.y += 0.001
-    each(this.planetOrbits, meshPlanet => (meshPlanet.rotation.y += _.random(0.01, 0.05)))
-    // this.meshPlanets.earth.rotation.y += 0.01
-    // this.solarSystem.rotation.y += 0.005
+    const time = Date.now() * 0.0001 // get the current time
+
+    each(this.planetOrbits, (orbit, key) => {
+      const planetInfo = planets[key]
+      const orbitRadius = planetInfo.distance
+      const speed = planetInfo.speed
+
+      // calculate the new position of the planet
+      const x = Math.cos(time * speed) * orbitRadius
+      const z = Math.sin(time * speed) * orbitRadius
+
+      // update the position of the planet
+      orbit.position.set(x, 0, z)
+
+      // continue rotating the planet on its own axis
+      orbit.children[0].rotation.y += 0.01
+    })
 
     this.renderer.render(this.scene, this.camera)
   }
